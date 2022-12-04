@@ -23,7 +23,7 @@ public struct DayFour: Solveable {
                 score += 1
             }
             
-            if Set(rangeOne).intersection(rangeTwo).count > 0 {
+            if rangeOne.intersection(rangeTwo).count > 0 {
                 score2 += 1
             }
         }
