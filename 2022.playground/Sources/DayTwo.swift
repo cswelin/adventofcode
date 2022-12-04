@@ -5,7 +5,7 @@ public struct DayTwo: Solveable {
     public init() {}
     
     public func solve() {
-        let path = Bundle.main.path(forResource: "Day2", ofType: "input")
+        let path = Bundle.main.path(forResource: "Day2", ofType: "txt")
         let rounds = try! String(contentsOfFile: path!).components(separatedBy: "\n")
 
         let partOneScores = [
@@ -44,7 +44,7 @@ public struct DayTwo: Solveable {
         print("Part two", rounds.reduce(0, { partialResult, round in
             partialResult + (partTwoScores[round] ?? 0)
         }))
-        print("\n\n")
+        print("\n")
 
     }
 }

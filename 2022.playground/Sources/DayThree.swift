@@ -6,7 +6,7 @@ public struct DayThree: Solveable {
     
     public func solve() {
         
-        let path = Bundle.main.path(forResource: "Day3", ofType: "input")
+        let path = Bundle.main.path(forResource: "Day3", ofType: "txt")
         let rucksacks = try! String(contentsOfFile: path!).components(separatedBy: "\n")
 
         func scoreValue(_ intValue: Int) -> Int {
@@ -23,12 +23,16 @@ public struct DayThree: Solveable {
         for rucksack in rucksacks {
 
             let first = Array(rucksack)
-            let firstHalf = first[0...(first.count / 2) - 1]
             
-            let secondHalf = first[(first.count / 2)...first.count-1]
-            let common = Set(firstHalf).intersection(Set(secondHalf)).first
+            
+            let middle = first.count / 2
+            let firstHalf = Set(first[..<middle])
+            let secondHalf = Set(first[middle...])
+            let common = firstHalf.intersection(secondHalf).first
+            
             score += scoreValue(Int(common?.asciiValue ?? 38))
             
+
             if items.count < 3 {
                 items.append(rucksack)
             }
