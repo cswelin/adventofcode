@@ -10,4 +10,3 @@ let solveable: [Solveable] = [
 ]
 
 solveable.forEach { $0.solve() }
-

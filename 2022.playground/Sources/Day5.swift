@@ -22,7 +22,7 @@ public struct Day5: Solveable {
             }
         }
 
-        var stacks: [[String]] = [
+        var partOneStacks: [[String]] = [
             ["T", "P", "Z", "C", "S", "L", "Q", "N"],
             ["L", "P", "T", "V", "H", "C", "G"],
             ["D", "C", "Z", "F"],
@@ -34,7 +34,7 @@ public struct Day5: Solveable {
             ["R", "C", "Q", "F", "S", "L", "V"]
         ]
 
-        var stack2 = stacks
+        var partTwoStacks = partOneStacks
 
         do {
             let input = try Bundle.main.path(forResource: "Day5", ofType: "txt")!.input()
@@ -45,36 +45,18 @@ public struct Day5: Solveable {
                 guard let removeIndex = Int(output.2) else { continue }
                 guard let toIndex = Int(output.3) else { continue }
                 let toMove = Int(output.1)!
+            
+                var removed = partOneStacks[removeIndex-1].suffix(toMove)
+                partOneStacks[toIndex-1].append(contentsOf: Array(removed).reversed())
+                partOneStacks[removeIndex-1].removeLast(toMove)
                 
-                var partTwoArray = [String]()
-                
-                for _ in 1...toMove {
-                    guard let last = stacks[removeIndex-1].popLast() else { continue }
-                    
-                    stacks[toIndex-1].append(last)
-                    
-                    guard let last = stack2[removeIndex-1].popLast() else { continue }
-                    partTwoArray.append(last)
-                }
-                
-                stack2[toIndex-1].append(contentsOf: partTwoArray.reversed())
-                partTwoArray.removeAll()
+                removed = partTwoStacks[removeIndex-1].suffix(toMove)
+                partTwoStacks[toIndex-1].append(contentsOf: removed)
+                partTwoStacks[removeIndex-1].removeLast(toMove)
             }
             
-            var output: String = ""
-            stacks.forEach {
-                output += $0.last ?? ""
-            }
-            
-            print("Day 5")
-            print("Part 1: ",output)
-            
-            var output2: String = ""
-            stack2.forEach {
-                output2 += $0.last ?? ""
-            }
-            
-            print("Part 2: ", output2)
+            print("Part 1: ", partOneStacks.compactMap { $0.last }.reduce("", +))
+            print("Part 2: ", partTwoStacks.compactMap { $0.last }.reduce("", +))
         } catch {
             
         }
