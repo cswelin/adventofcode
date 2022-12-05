@@ -1,4 +1,5 @@
 import Foundation
+import Advent
 
 public struct DayOne: Solveable {
     
@@ -6,7 +7,7 @@ public struct DayOne: Solveable {
     
     public func solve() {
        
-        let path = Bundle.main.path(forResource: "DayOne", ofType: "input")
+        let path = Bundle.main.path(forResource: "Day1", ofType: "txt")
         let numbers = try! String(contentsOfFile: path!).components(separatedBy: "\n").map(Int.init)
 
         var count = 0

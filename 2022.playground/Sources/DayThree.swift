@@ -1,13 +1,12 @@
 import Foundation
+import Advent
 
 public struct DayThree: Solveable {
     
     public init() { }
     
     public func solve() {
-        
-        let path = Bundle.main.path(forResource: "Day3", ofType: "txt")
-        let rucksacks = try! String(contentsOfFile: path!).components(separatedBy: "\n")
+        let input = Bundle.main.path(forResource: "Day3", ofType: "txt")!.input()
 
         func scoreValue(_ intValue: Int) -> Int {
             if intValue > 96 {
@@ -20,7 +19,7 @@ public struct DayThree: Solveable {
         var items = [String]()
         var scorePartTwo = 0
         var score = 0
-        for rucksack in rucksacks {
+        for rucksack in input.lines {
 
             let first = Array(rucksack)
             

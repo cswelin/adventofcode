@@ -1,4 +1,6 @@
 import Foundation
+import Advent
+import Algorithms
 
 let solveable: [Solveable] = [
     DayOne(),

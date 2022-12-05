@@ -1,4 +1,5 @@
 import Foundation
+import Advent
 
 public struct DayOne: Solveable {
     
