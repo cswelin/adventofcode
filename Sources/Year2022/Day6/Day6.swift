@@ -6,37 +6,49 @@
 //
 
 import Foundation
-
-
-import Foundation
+import Algorithms
 import AOCCore
-import RegexBuilder
 
 public struct Day6: Day {
     
     public func part1() async throws -> Int {
-        signalPosition(chunkSize: 4)
-        
+        signalPosition(windowSize: 4)
     }
     
     public func part2() async throws -> Int {
-        signalPosition(chunkSize: 14)
+        signalPosition(windowSize: 14)
     }
     
-    func signalPosition(chunkSize: Int) -> Int {
-        let line = Array(input().raw)
+    // Approach using the Algorithms library
+    public func part1_algorithms() async throws -> Int {
+        input().characters
+                .windows(ofCount: 4)
+                .first(where: \.allUnique)!
+                .endIndex
+    }
+    
+    public func part2_algorithms() async throws -> Int {
+        input().characters
+                .windows(ofCount: 14)
+                .first(where: \.allUnique)!
+                .endIndex
+    }
+}
+
+extension Day6 {
+    
+    func signalPosition(windowSize: Int) -> Int {
+        let characters = input().characters
         var firstMakerIndex: Int = 0
         
-        for index in 0...line.count - (chunkSize - 1) {
-            let chunk = line[index...index + (chunkSize - 1)]
-            if Set(chunk).count == chunkSize {
-                firstMakerIndex = index + chunkSize
+        for index in 0...characters.count - (windowSize - 1) {
+            let chunk = characters[index...index + (windowSize - 1)]
+            if Set(chunk).count == windowSize {
+                firstMakerIndex = index + windowSize
                 break
             }
         }
         
         return firstMakerIndex
     }
-    
-    
 }

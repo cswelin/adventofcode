@@ -7,7 +7,7 @@
 
 import AOC
 
-let day = try? Year2022.day(1)
+let day = try? Year2022.day(6)
 print(await try? day?.run())
 //
 //let d = Year2022.days(1)

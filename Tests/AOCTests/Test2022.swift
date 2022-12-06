@@ -46,10 +46,16 @@ final class Test2022: XCTestCase {
     }
     
     func testDay6() async throws {
-        let (p1, p2) = try await Day6().run()
+        let day = Day6()
+        let (p1, p2) = try await day.run()
 
         XCTAssertEqual(p1, 1598)
         XCTAssertEqual(p2, 2414)
+        
+        let p1a = try await day.part1_algorithms()
+        let p2a = try await day.part2_algorithms()
+        XCTAssertEqual(p1a, 1598)
+        XCTAssertEqual(p2a, 2414)
     }
 
 }

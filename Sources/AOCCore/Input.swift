@@ -16,6 +16,7 @@ public struct Input {
 extension Input {
     public var lines: [String] { raw.trimmingCharacters(in: .newlines).components(separatedBy: .newlines) }
     public var integers: [Int] { lines.map { Int($0)! } }
+    public var characters: Array<Character> { Array(raw) }
 }
 
 extension Input {
